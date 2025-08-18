@@ -12,7 +12,7 @@ const UPLOAD_FOLDER = '../exchange/upload/';
 // Korrigierte Version:
 const PORT = process.env.PORT || 3000; // Heroku setzt process.env.PORT
 
-const url = `http://localhost:${PORT}`
+const url = `http://127.0.0.1:${PORT}`
 
 let clientIp = undefined;
 
