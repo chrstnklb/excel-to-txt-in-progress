@@ -19,8 +19,9 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },
   "devDependencies": {
-    "jest": "^29.6.2",
+    "jest": "^29.7.0",
     "mock-fs": "^5.2.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "supertest": "^7.1.4"
   }
 }

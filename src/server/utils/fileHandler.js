@@ -62,4 +62,4 @@ module.exports = {
 
 }
 
-exports.TARGET_FILENAME = TARGET_FILENAME;
+module.exports.TARGET_FILENAME = TARGET_FILENAME;
