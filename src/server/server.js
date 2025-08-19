@@ -1,31 +1,11 @@
-const path = require('path');
-
 const app = require('./app.js');
 
-const transformer = require('./transformer.js');
-const fileHandler = require('./utils/fileHandler.js');
-const logs = require('./utils/logs.js');
+const config = require('../config'); 
 
-const UPLOAD_FOLDER = '../exchange/upload/';
-
-
-// Korrigierte Version:
-const PORT = process.env.PORT || 3000; // Heroku setzt process.env.PORT
-
-const url = `http://127.0.0.1:${PORT}`
-
-let clientIp = undefined;
-
-const { getType } = require('mime');
-
-app.listen(PORT, () => {
-    logs.logAttribute('listening at', url);
-    console.log(`Server läuft auf Port ${PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`Server läuft auf Port ${config.PORT}`);
+  console.log(`Uploads landen in: ${config.UPLOAD_FOLDER}`);
 });
-
-module.exports = {
-    clientIp: clientIp
-}
 
 // Exportiere die App, aber starte den Server nicht
 module.exports = app;

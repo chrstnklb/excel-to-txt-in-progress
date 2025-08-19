@@ -7,3 +7,4 @@ src/exchange/metrics/
 src/exchange/downloads/
 src/src/exchange/downloads/
 docs/Test/
+.env

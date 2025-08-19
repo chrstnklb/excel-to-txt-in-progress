@@ -1,29 +1,34 @@
-const express = require('express');
+// Node-Core
+const path = require('path');
 
+// Third-party
+const express = require('express');
+const multer = require('multer');
+const config = require('../config');
+
+// Local
+const ErrorList = require('./error');
+const fileHandler = require('./utils/fileHandler');
+const logs = require('./utils/logs');
+const transformer = require('./transformer');
+
+// Constants
+// const UPLOAD_FOLDER = path.join(__dirname, '..', 'exchange', 'upload');
+const UPLOAD_FOLDER = config.UPLOAD_FOLDER;
+
+// App init
 const app = express();
 
-const multer = require('multer');
-const path = require('path');
-const fileHandler = require('./utils/fileHandler');
-const transformer = require('./transformer');
-const logs = require('./utils/logs');
-const ErrorList = require('./error');
-
-const UPLOAD_FOLDER = '../exchange/upload/';
-
-// Korrigierte Version:
-const PORT = process.env.PORT || 3000; // Heroku setzt process.env.PORT
-
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination: function (_req, _file, cb) {
 
         // if folder does not exist, create it
-        if (!fileHandler.directoryExists(path.join(__dirname, UPLOAD_FOLDER))) {
-            fileHandler.writeDirectory(path.join(__dirname, UPLOAD_FOLDER));
+        if (!fileHandler.directoryExists(config.UPLOAD_FOLDER)) {
+            fileHandler.writeDirectory(config.UPLOAD_FOLDER);
         }
-        cb(null, path.join(__dirname, UPLOAD_FOLDER));
+        cb(null, config.UPLOAD_FOLDER);
     },
-    filename: function (req, file, cb) {
+    filename: function (_req, file, cb) {
         cb(null, file.originalname); // Behalte den Originaldateinamen bei
     }
 });
@@ -41,7 +46,7 @@ app.use(express.static(__dirname, {
     }
 }));
 
-// Deine Routen
+// Routen
 app.post("/upload", upload.single('upload'), (req, res) => {
 
     try {
@@ -81,8 +86,7 @@ app.post("/upload", upload.single('upload'), (req, res) => {
     }
 });
 
-// Füge weitere Routen hier hinzu...
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.status(200);
     res.send('Server is running');
 });
