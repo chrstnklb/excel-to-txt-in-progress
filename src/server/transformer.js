@@ -34,12 +34,12 @@ function transformLohnabrechnungToTxt(excelFile) {
     let abrechnungszeitraum = felder.readAbrechnungsZeitraum(); // 06
 
     // felder.readPersonalnummer(cellCoordinate = 'A4'); // 01
-    
+
     // generate lines, deduplicate and convert to string
     let alleZeilen = identifyLinesFromCells(workSheet, lastDataRow, mandantennummer, abrechnungszeitraum);
     let uniqueZeilen = deduplicateLines(alleZeilen);
     let fileData = linesToString(uniqueZeilen);
-    
+
     // clean up
     fileHandler.deleteUploadedFiles();
 
@@ -53,7 +53,7 @@ function transformLohnabrechnungToTxt(excelFile) {
 
 function identifyLinesFromCells(workSheet, lastDataRow, mandantennummer, abrechnungszeitraum) {
     let alleZeilen = "";
-    
+
     for (let row = DATA_START_ROW; row <= lastDataRow; row++) {
 
         let personalnummer = felder.readPersonalnummer(cellCoordinate = ('A' + row)); // 01
@@ -67,8 +67,19 @@ function identifyLinesFromCells(workSheet, lastDataRow, mandantennummer, abrechn
                 // if (workSheet[excel.getCellCoordinate(col, LOHNART_ROW + 1)] !== undefined) {
                 if (lohnArtIsInvalid(workSheet, col, LOHNART_ROW + 1)) {
                     let headerCellContent = workSheet[excel.getCellCoordinate(col, LOHNART_ROW + 1)].v;
-                    let feld = replaceDots(excel.readCell(excel.getCellCoordinate(col, row), 'number'));
-                    feld = checkForZero(feld);
+
+                    // let feld = replaceDots(excel.readCell(excel.getCellCoordinate(col, row), 'number'));
+                    // feld = checkForZero(feld);
+
+
+                    let raw = excel.readCell(excel.getCellCoordinate(col, row), 'number'); // Number oder undefined
+                    let feld = checkForZero(raw); // "" bei 0/leer/undefined
+                    if (feld === "") {
+                        // 0 oder leer => nichts erzeugen
+                        continue;
+                    }
+                    feld = replaceDots(feld); // jetzt sicher formatieren (z.B. "3,50")
+
                     alleZeilen += createOneLine(
                         mandantennummer,
                         personalnummer,
@@ -170,9 +181,21 @@ function isSameKostentraeger(columns, potentialduplicatedColumns) {
 }
 
 function checkForZero(feld) {
-    if (feld === "0,00") {
+
+    if (feld === undefined || feld === null) return ""; // nie "undefined" im Output
+
+
+    // String normalisieren
+    const s = String(feld).trim().replace(',', '.');
+
+    // Zahl parsen
+    const num = Number(s);
+
+    // Wenn Zahl und gleich 0 -> "leer"
+    if (!isNaN(num) && num === 0) {
         return "";
     }
+
     return feld;
 }
 
@@ -207,10 +230,21 @@ function lohnArtIsInvalid(workSheet, col, row) {
 }
 
 function replaceDots(feld) {
-    try { feld = feld.toFixed(2).toString().replace('.', ','); }
+
+    try {
+        if (typeof feld === 'number') {
+            feld = feld.toFixed(2);
+        }
+        feld = String(feld);
+        // Falls bereits Kommaformat, lassen wir es; sonst Punkt→Komma
+        if (/\d\.\d{1,}$/.test(feld)) {
+            feld = feld.replace('.', ',');
+        }
+    }
     catch (error) { console.log(error); }
     return feld;
 }
+
 
 function createOneLine(
     mandantennummer, personalnummer, lohnart,

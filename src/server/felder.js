@@ -43,21 +43,21 @@ module.exports = {
 
             personalnummer = personalnummer.replace(/(\r\n|\n|\r)/gm, "");
             personalnummer = personalnummer.replace('-', '');
-        /*}
-        if (personalnummer === undefined) {
-            ErrorList.addError(
-                `Die Personalnummer wurde erwartet. ` +
-                `Doch die Zelle '${cellCoordinate}' ist leer!`);
-        } else
-        
-        if (cellCoordinate === "A4" && personalnummer !== "Personalnummer") {
-            ErrorList.addError(
-                `In Zell 'A4' wurde 'Personalnummer' erwartet. ` +
-                `Doch die Zelle beinhaltet ${personalnummer}!`);
-        } else if (String(personalnummer).toLowerCase() === "neu") {
-            ErrorList.addError(
-                `Die Zelle '${cellCoordinate}' beinhaltet ${personalnummer}!`);
-        } else {*/
+            /*}
+            if (personalnummer === undefined) {
+                ErrorList.addError(
+                    `Die Personalnummer wurde erwartet. ` +
+                    `Doch die Zelle '${cellCoordinate}' ist leer!`);
+            } else
+            
+            if (cellCoordinate === "A4" && personalnummer !== "Personalnummer") {
+                ErrorList.addError(
+                    `In Zell 'A4' wurde 'Personalnummer' erwartet. ` +
+                    `Doch die Zelle beinhaltet ${personalnummer}!`);
+            } else if (String(personalnummer).toLowerCase() === "neu") {
+                ErrorList.addError(
+                    `Die Zelle '${cellCoordinate}' beinhaltet ${personalnummer}!`);
+            } else {*/
             personalnummer = personalnummer.padStart(6, '0');
         }
         return personalnummer;

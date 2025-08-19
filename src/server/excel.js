@@ -21,6 +21,13 @@ function normalizeNumber(value) {
     return Number(String(value).trim().replace(',', '.'));
 }
 
+function isEmptyOrZero(cell) {
+    if (!cell || cell.v === undefined || String(cell.v).trim() === '') return true;
+    // 0 explizit als „leer“ interpretieren
+    if (Number(String(cell.v).replace(',', '.')) === 0) return true;
+    return false;
+}
+
 module.exports = {
 
     readPersonalnummer: function (row) {
@@ -74,7 +81,7 @@ module.exports = {
                 const s = String(data).trim();
                 // Erlaube: 123 | -123 | 123.45 | -123.45 | 123,45 | -123,45
                 if (/^-?[0-9]+([,.][0-9]+)?$/.test(s)) {
-                    result = normalizeNumber(s); // Normalisierung: Komma zu Punkt
+                    result = normalizeNumber(s); // 0 bleibt 0
                 } else {
                     ErrorList.addError(
                         `Die Zelle '${cellCoordinate}' beinhaltet '${data}', ` +
@@ -115,8 +122,8 @@ module.exports = {
             const cellRef = COLUMN_OF_PERSONALNUMMER + row;
             const cell = workSheet[cellRef];
 
-            if (cell === undefined || cell.v === undefined || String(cell.v).trim() === '') {
-                // Leerzeile -> ignorieren
+            if (isEmptyOrZero(cell)) {
+                // keine Stunden eingetragen oder 0 => überspringen
                 continue;
             }
 
@@ -131,20 +138,6 @@ module.exports = {
         }
 
         return lastValidRow;
-    },
-
-    iterateColumns: function () {
-        let cols = this.getColCount();
-        for (let i = fixedColumns - 1; i < cols; i++) {
-            let cell = workSheet[xlsx.utils.encode_col(i) + HEADER_ROW];
-        }
-    },
-
-    iterateRows: function () {
-        let rows = this.getNumberOfLastDataRow();
-        for (let i = ROW_OF_FIRST_PERSONALNUMMER; i <= lastRow; i++) {
-            let cell = workSheet[COLUMN_OF_PERSONALNUMMER + i];
-        }
     },
 
     getCellCoordinate: function (col, row) {
