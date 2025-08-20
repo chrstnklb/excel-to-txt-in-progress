@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const config = require('../config');
 
-const folderPath = path.join(__dirname, '../exchange/metrics');
+const folderPath = config.METRIC_FOLDER;
 const transformations = [];
 
 fs.readdir(folderPath, (err, files) => {

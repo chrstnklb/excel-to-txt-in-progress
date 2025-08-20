@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('./app'); // Angenommen, deine Express-App ist in app.js
 const path = require('path');
 const fs = require('fs');
+const config = require('../config');
 
 let server;
 
@@ -28,7 +29,7 @@ describe('API Endpoints', () => {
   // Test für den POST /upload Endpunkt
   test('POST /upload sollte eine Excel-Datei hochladen und die korrekte Antwort zurückgeben', async () => {
     // Pfad zur Testdatei festlegen
-    const testFilePath = path.join(__dirname, 'testdata', 'post-upload-correct.xlsx');
+    const testFilePath = path.join(config.TESTDATA_FOLDER, 'post-upload-correct.xlsx');
 
     // Sicherstellen, dass die Datei existiert
     if (!fs.existsSync(testFilePath)) {
@@ -38,9 +39,6 @@ describe('API Endpoints', () => {
     const res = await request(app)
       .post('/upload')
       .attach('upload', testFilePath); // Hängt die Datei an die Anfrage an
-
-    // Gib die Antwort aus, um den Fehler zu sehen
-    console.log('API-Antwort:', res.body);
 
     // Prüfe den Statuscode und fahre dann fort
     expect(res.statusCode).toBe(200);
@@ -55,7 +53,8 @@ describe('API Endpoints', () => {
 
     // Optional: Die erzeugte Datei nach dem Test löschen
     if (res.body.fileName) {
-      const downloadedFilePath = path.join(__dirname, 'download', path.basename(res.body.fileName));
+      // Extrahiere den Download-Ordner aus der Konfiguration
+      const downloadedFilePath = path.join(config.DOWNLOAD_FOLDER, res.body.fileName);
       if (fs.existsSync(downloadedFilePath)) {
         fs.unlinkSync(downloadedFilePath);
       }

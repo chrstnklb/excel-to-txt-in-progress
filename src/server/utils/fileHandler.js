@@ -2,8 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const time = require('./time.js');
 const logs = require('./logs.js');
-
-const TARGET_FILENAME = "Imp_lbw.txt";
+const config = require('../../config.js');
 
 module.exports = {
 
@@ -52,14 +51,13 @@ module.exports = {
 
     writeTxtFile: function (content) {
         const timestamp = time.getActualTimeStampYYYYMMDDhhmmss();
-        const folder = path.join(__dirname, '../../exchange/download/' + timestamp);
-        return this.writeToFile(folder, TARGET_FILENAME, content);
+        const folder = path.join(config.DOWNLOAD_FOLDER, timestamp);
+        return this.writeToFile(folder, config.TARGET_FILENAME, content);
     },
 
     deleteUploadedFiles: function () {
-        this.deleteFiles(path.join(__dirname, '../../exchange/upload/'));
+        // delete files from the upload folder used by this project
+        return this.deleteFiles(config.UPLOAD_FOLDER);
     }
 
 }
-
-module.exports.TARGET_FILENAME = TARGET_FILENAME;

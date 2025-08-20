@@ -1,9 +1,6 @@
 const xlsx = require('xlsx');
-const path = require('path');
 const ErrorList = require('./error.js');
-const { UPLOAD_FOLDER } = require('../config.js');
 
-const HEADER_ROW = 3;
 const ROW_OF_FIRST_PERSONALNUMMER = 5;
 const COLUMN_OF_PERSONALNUMMER = 'A';
 
@@ -62,10 +59,6 @@ module.exports = {
     },
 
     getWorkBook: function (excelFile) {
-        console.log(`Lese Excel-Datei: ${excelFile}`);
-        console.log(`Pfad: ${path.join(UPLOAD_FOLDER, excelFile)}`);
-        console.log(`Upload-Ordner: ${UPLOAD_FOLDER}`);
-
 
         workBook = xlsx.readFile(excelFile);
         return workBook;

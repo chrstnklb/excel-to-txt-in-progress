@@ -23,7 +23,6 @@ function transformToCSV(excelFile) {
 }
 
 function transformLohnabrechnungToTxt(excelFile) {
-    console.log(`Verarbeite Lohnabrechnung: ${excelFile}`);
 
     metric = new Metric();
 

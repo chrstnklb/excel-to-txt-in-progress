@@ -12,9 +12,6 @@ const fileHandler = require('./utils/fileHandler');
 const logs = require('./utils/logs');
 const transformer = require('./transformer');
 
-// Constants
-const UPLOAD_FOLDER = config.UPLOAD_FOLDER;
-
 // App init
 const app = express();
 
@@ -57,7 +54,7 @@ app.post("/upload", upload.single('upload'), (req, res) => {
 
         // start timer
         const start = new Date().getTime();
-        const targetFilename = transformer.transformToCSV(path.join(UPLOAD_FOLDER, req.file.filename));
+        const targetFilename = transformer.transformToCSV(path.join(config.UPLOAD_FOLDER, req.file.filename));
         // end timer
         const end = new Date().getTime();
         const time = end - start;
@@ -67,7 +64,7 @@ app.post("/upload", upload.single('upload'), (req, res) => {
             statusCode: 200,
             fileName: txtFileName,
             uploadedFileName: req.file.filename,
-            downloadFileName: fileHandler.TARGET_FILENAME,
+            downloadFileName: config.TARGET_FILENAME,
             errorList: ErrorList.errors,
             calculationTimeInMs: time
         });

@@ -1,12 +1,12 @@
 const fileHandler = require('./fileHandler.js');
-const path = require('path');
 const time = require('./time.js');
-const Timer = require('./timer.js'); 
+const Timer = require('./timer.js');
+const config = require('../../config.js');
 
 class Metric {
 
     constructor() {
-                this.timestamp = '';
+        this.timestamp = '';
         this.colCount = 0;
         this.rowCount = 0;
         this.calculationTimeInMs = 0;
@@ -16,8 +16,8 @@ class Metric {
     writeMetric() {
         Timer.endTimer()
         this.setCalculationTimeInMs(Timer.endTimer());
-        
-        let folder = path.join(__dirname, '../../exchange/metrics/');
+
+        let folder = config.METRIC_FOLDER;
         let filename = 'metric-' + this.getTimestamp() + '.json';
         let data = JSON.stringify(this.getMetricObject());
 
@@ -26,7 +26,7 @@ class Metric {
 
     getMetricObject() {
         return {
-                        timestamp: this.getTimestamp(),
+            timestamp: this.getTimestamp(),
             colCount: this.getColCount(),
             rowCount: this.getRowCount(),
             calculationTimeInMs: this.getCalculationTimeInMs()
@@ -65,5 +65,5 @@ class Metric {
         this.calculationTimeInMs = calculationTimeInMs;
     }
 }
-  
+
 module.exports = Metric;
