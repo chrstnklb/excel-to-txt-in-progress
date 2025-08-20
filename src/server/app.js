@@ -13,7 +13,6 @@ const logs = require('./utils/logs');
 const transformer = require('./transformer');
 
 // Constants
-// const UPLOAD_FOLDER = path.join(__dirname, '..', 'exchange', 'upload');
 const UPLOAD_FOLDER = config.UPLOAD_FOLDER;
 
 // App init
@@ -35,16 +34,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.use(express.static(path.join(__dirname, '../client')))
-
-app.use(express.static(__dirname, {
-    setHeaders: (res, path) => {
-        const type = getType(path);
-        if (type === 'application/javascript' || type === 'text/css') {
-            res.setHeader('Content-Type', type);
-        }
-    }
-}));
+// app.use(express.static(path.join(__dirname, '../client')))
+app.use('/static', express.static(config.PUBLIC_FOLDER));
 
 // Routen
 app.post("/upload", upload.single('upload'), (req, res) => {
@@ -84,11 +75,6 @@ app.post("/upload", upload.single('upload'), (req, res) => {
             details: error.message
         });
     }
-});
-
-app.get('/', (_req, res) => {
-    res.status(200);
-    res.send('Server is running');
 });
 
 // TODO: make it get request

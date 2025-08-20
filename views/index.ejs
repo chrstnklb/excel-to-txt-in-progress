@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" href="/static/logo-black-small.png">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Relog Lohn Konverter</title>
+</head>
+
+<body>
+
+    <!-------------------------------------------------- Start -------------------------------------------------->
+
+    <h1 id="start"></h1>
+
+    <div class="grid-container" id="start-container">
+        <div class="grid-item"></div>
+        <div class="grid-item">
+
+            <div class="container" id="logo-container">
+                <div class="logo">
+                    <img src="/static/logo-black-small.png" alt="relog logo">
+                </div>
+                <div>
+                    <h2>Relog Lohn Konverter</h2>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+            <div class="area" id="area-start">
+
+                <div class="container" id="dnd-container">
+                    <div>
+                        <div class="drag-area" id="drop-zone">
+                            <h2 id="drop-zone-text">Drag and Drop</h2>
+                        </div>
+                        <div class="buttons-container">
+                            <form id="restartForm" action="/" hidden method="get">
+                                <button class="btn btn-primary" id="dnd-button-restart" type="submit"> Neustart</button>
+                            </form>
+
+                            <!-- TODO: make it get request -->
+                            <form id="downloadForm" action="/download" hidden method="post">
+                                <button class="btn btn-primary" id="dnd-button-save" type="submit"> Speichern</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+            <div class="container position-relative" id="stepper-container">
+
+                <h2>Schritt für Schritt</h2>
+
+                <div class="btn-group-vertical">
+
+                    <form id="stepper-form-select">
+                        <button class="btn btn-success" disabled> 1 </button>
+                        <input class="form-control" id="stepper-button-select" type="file">
+                    </form>
+
+                    <form id="stepper-form-convert" action="/upload" hidden method="post">
+                        <button class="btn btn-warning" disabled> 2 </button>
+                        <button class="btn btn-outline-warning" id="stepper-button-convert" type="button">
+                            Konvertieren
+                        </button>
+                    </form>
+
+                    <!-- TODO: make it get request -->
+                    <form id="stepper-form-save" hidden action="/download" method="post">
+                        <button class="btn btn-danger" disabled> 3 </button>
+                        <button class="btn btn-outline-danger" id="stepper-button-save" type="submit">
+                            Speichern
+                        </button>
+                    </form>
+
+                    <form id="stepper-form-restart" hidden action="/" method="get">
+                        <button class="btn btn-primary" disabled> 4 </button>
+                        <button class="btn btn-primary" id="stepper-button-restart" type="submit"> Neustart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item"></div>
+    </div>
+
+    <footer>
+        <small>Version: v<%= version %></small>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <script src="/static/client.js"></script>
+    <script src="/static/dom.js"></script>
+    <script src="/static/fetch.js"></script>
+    <script src="/static/logs.js"></script>
+
+</body>
+
+</html>
