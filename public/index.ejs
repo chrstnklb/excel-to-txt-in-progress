@@ -8,45 +8,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="/static/logo-black-small.png" rel="icon">
+    <link href="logo-black-small.png" rel="icon">
     <link type="text/css" href="/static/style.css" rel="stylesheet">
     <title>Relog Lohn Konverter</title>
 </head>
 
 <body>
-    <!---------------------------------------- Navigation ---------------------------------------->
-
-    <!--div class="btn-group-vertical" id="navigation-group-button" role="group">
-
-        <button class="btn btn-outline-light" onclick="jumpTo('start')">Start </button>
-        <button class="btn btn-outline-light" onclick="jumpTo('roadmap')">Roadmap </button>
-        <button class="btn btn-outline-light" onclick="jumpTo('dsgvo')">DSGVO
-            <span class="badge text-bg-danger">Neu</span>
-        </button>
-
-    </-->
-
-    <!-------------------------------------------------- Start -------------------------------------------------->
 
     <h1 id="start"></h1>
 
     <div class="grid-container" id="start-container">
         <div class="grid-item"></div>
         <div class="grid-item">
-            <!-- <div class="alert alert-danger" role="alert">
-                                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
-                    Neu
-                </span>
-                <h6>
-
-                    Dieser Service wird vermutlich zum 31. März 2024 abgestellt! <br>
-                    <br>
-                    Wenn du diesen Service weiter nutzen
-                    möchtest,<br>
-                    wende dich bitte an deinen Vorgesetzten!
-                </h6>
-            </div> -->
-
             <div class="container" id="logo-container">
                 <div class="logo">
                     <img src="logo-black-small.png" alt="relog logo">
@@ -78,20 +51,12 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
         <div class="grid-item"></div>
         <div class="grid-item"></div>
         <div class="grid-item">
             <div class="container position-relative" id="stepper-container">
-                <!-- <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">
-                    Neu
-                </span> -->
-
                 <h2>Schritt für Schritt</h2>
 
                 <div class="btn-group-vertical">
@@ -129,185 +94,6 @@
     <footer>
         <small>Version <%= version %></small>
     </footer>
-
-    <!-------------------------------------------------- Roadmap -------------------------------------------------->
-
-    <!-- div class="area" id="area-roadmap">
-        <div class="text-center">
-            <br>
-            <h1 id="roadmap">Roadmap</h1>
-            <br>
-            <br>
-            <br>
-
-            <h3>2024-09-29</h3> <br>
-            <ul>
-                <li> 🐞 Abrechnungszeitraum an falscher Stelle exportiert.</li>
-            </ul> <br>
-            
-            <h3>2024-09-25</h3> <br>
-            <ul>
-                <li> ⭐ Prüfung auf korrekte Personalnummer hinzugefügt.</li>
-            </ul> <br>
-
-            <h3>2024-09-22</h3>
-            <br>
-            <ul>
-                <li> ⭐ Das Feld A4 (Personalnummer) wird nicht geprüft.</li>
-                <li> ⭐ AnzahlTage, AnzahlStunden sowie Betrag mit gleicher Lohnart und Personalnummer werden nun
-                    kummuliert.</li>
-                <li> ⭐ Bereich "Kontakt" wurde entfernt.</li>
-            </ul> <br>
-
-            <h3>2024-01-08</h3>
-            <br>
-            <ul>
-                <li> ⭐ 0 in Excel Zelle wird nicht mehr in txt-Datei geschrieben.</li>
-            </ul>
-            <br>
-
-            <h3>2024-01-04 🎇 Frohes Neues Jahr</h3>
-            <br>
-            <ul>
-                <li> ⭐ Erlaube auch negative Zahlen.</li>
-                <li> ⭐ DSGVO Hinweise hinzugefügt.</li>
-                <li> ⭐ Einträge ignorieren deren Lohnart nicht konform ist.</li>
-                <li> 🪚 Kalendarium Funktion deaktiviert.</li>
-            </ul>
-            <br>
-
-            <h3>2023-11-28</h3>
-            <br>
-            <ul>
-                <li> ⭐ Kalendarium in erster Version veröffentlicht.</li>
-            </ul>
-            <br>
-
-            <h3>2023-11-25</h3>
-            <br>
-            <ul>
-                <li> ⚒️ Refactoring in Hinsicht auf Kalendarium Funktionern.</li>
-            </ul>
-            <br>
-
-            <h3> 2023-11-24 </h3>
-            <br>
-            <ul>
-                <li> ⭐ Roadmap schlichter gestaltet.</li>
-                <li> ⭐ Neue Upload-Funktion hinzugefügt.</li>
-                <li> ⭐ Menuband korrigiert und schlichter gestaltet.</li>
-                <li> ⚒️ Strukturen im html und css vereinfacht.</li>
-            </ul>
-            <br>
-
-            <h3> 2023-11-22 </h3>
-            <br>
-            <ul>
-                <li> 🐞 Bugfix: Einige Fehlerbehandlungen wurden entschärft.</li>
-                <li> 🐞 Bugfix: Anhäufungen von Fehlermeldungen von verschiedenen Uploads behoben.</li>
-                <li>
-                    ⚒️ Dauer der Verarbeitung wird an Client gesendent, Vorbereitung zur Anzeige der Information.
-                </li>
-                <li> ⭐ Kontakt-Adress zum Entwickler geändert.</li>
-            </ul>
-            <br>
-
-            <h3> 2023-11-16 </h3>
-            <br>
-            <ul>
-                <li> 🐞 Bugfix: Hintergrundfarbe des Start Bereichs wure nicht korrekt dargestellt.</li>
-                <li> ⭐ Behandle Fehler 1 "Datum ist falsch" abfangen (IST: August Soll: 01.08.203)</li>
-                <li> ⭐ Behandle Fehler 2 "Fehlende Personalnummer" abfangen ( Neue Mitarbeiter ohne Personalnummer)
-                </li>
-                <li> ⭐ Behandle Fehler 3 "Mandantennummer fehlt" abfangen (Mandantennummer fehlt)</li>
-                <li> ⭐ Behandle Fehler 4 "Format der Zahlen-Zellen prüfen" abfangen (Text im Feld wo nur zahlen
-                    reinkommen)
-                </li>
-                <li> ⭐ Behandle Fehler 5 "Soll: Personalnummer Ist: Mitarbeiternummer" abfangen (Soll:
-                    Personalnummer
-                    Ist:
-                    Mitarbeiternummer)</li>
-                <br>
-                <li> ⭐ Erstes Feedback vom Server in Upload-Fläche als Text dargestellt.</li>
-                <li> ⭐ Umbenennung des des Website Titels: "Wandel die Excel …" zu "Relog Lohn Konverter"</li>
-                <li> ⭐ Umbenennung unter dem Logo: "Wandel die Excel …" zu "Relog Lohn Konverter"</li>
-                <li> ⭐ Umbenennung: "Ziehe die Datei…." zu " Drag and Drop"</li>
-            </ul>
-            <br>
-
-            <h3>2023-11-15</h3>
-            <br>
-            <ul>
-                <li> 🐞 Bugfix: "Mehrfaches 'Hovern' über die Upload-Fläche führte zu Darstellungsproblemen."</li>
-                <li> 🐞 Bugfix: "Mehrfaches Hochladen hintereinander ohne Aktualisierung der Seite führte zu
-                    Fehlermeldung."
-                </li>
-                <li> ⭐ Roadmap-Ansicht übersichtlicher gestaltet.</li>
-                <li> ⭐ Schärfere Darstellung des relog Logos.</li>
-                <li> ⭐ Favicon mit relog Logo eingebunden.</li>
-                <li> ⚒️ Website-Bereiche werden nun dynamisch geladen und sind als einzelne Komponenten
-                    implementiert.
-                </li>
-            </ul>
-            <br>
-
-            <h3> 2023-11-11 </h3>
-            <ul>
-                <li>
-                    ⭐ Binde Logo und Unternehmensfarben ein.
-                </li>
-            </ul>
-            <br>
-
-
-        </div>
-    </!-->
-
-    <!-------------------------------------------------- DSGVO -------------------------------------------------->
-
-    <!--div class="area" id="area-dsgvo">
-
-        <div class="text-center">
-            <br>
-            <h1 id="dsgvo">DSGVO - Hinweis</h1>
-
-            <br>
-            <br>
-            <br>
-            <h2> Funktionsweise der Website</h2>
-            <br>
-            Zu <b>KEINEM</b> Zeitpunkt wird die hochgeladene Datei auf dem Server gespeichert. <br>
-            Für die Verarbeitung der Datei wird die Datei in den (flüchtigen) Arbeitsspeicher geladen. <br>
-            Während der Verarbeitung werden die Spalten "Vorname" und "Nachname" <b>NICHT</b> gelesen. <br>
-            Nach der Verarbeitung wird die Datei aus dem Arbeitsspeicher gelöscht. <br>
-            <br>
-            Nach dem Download der Ziel-Datei wird die Datei vom Server gelöscht.<br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <h2>Metriken</h2>
-            <br>
-            Um die Nutzung der Website zu verbessern, werden <b>aktuell</b> folgende Daten erhoben. <br>
-            <br>
-            Zeitpunkt der Nutzung ("timestamp")<br>
-            Anzahl der Spalten ("colCount")<br>
-            Anzahl der Zeilen ("rowCount")<br>
-            Dauer der Verarbeitung ("calculationTimeInMs")<br><br>
-
-            <b> Beispiel:</b>
-            {
-            "timestamp":"2024-01-04-03-36-48",
-            "colCount":11,
-            "rowCount":2,
-            "calculationTimeInMs":6
-            } <br>
-            <br>
-            Diese Daten dienen aktuell zur Beurteilung der Performance und der Nutzung der Website. <br>
-
-        </div>
-    </!-->
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
