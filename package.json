@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "testcoverage": "jest --coverage",
+    "test:coverage": "jest --coverage",
     "start": "node src/server/server.js",
     "nodemon": "nodemon src/server/server.js"
   },

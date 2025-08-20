@@ -6,11 +6,6 @@ module.exports = {
         this.logServerRoute(`upload:${describer}:\n\t${value}`);
     },
 
-    logServerRouteDownload: function (describer, value) {
-        if (!this.loggingEnabled) return;
-        this.logServerRoute(`download:${describer}:\n\t${value}`);
-    },
-
     logServerRoute: function (route) {
         if (!this.loggingEnabled) return;
         this.logServer(`route:${route}`);

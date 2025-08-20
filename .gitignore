@@ -3,7 +3,7 @@ coverage/
 upload/
 download/
 statistics/
-src/exchange/metrics/
+src/exchange/metric/
 src/exchange/downloads/
 src/src/exchange/downloads/
 docs/Test/
