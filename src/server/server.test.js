@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server/app'); // Angenommen, deine Express-App ist in app.js
+const app = require('./app'); // Angenommen, deine Express-App ist in app.js
 const path = require('path');
 const fs = require('fs');
 
@@ -41,7 +41,7 @@ describe('API Endpoints', () => {
 
     // Gib die Antwort aus, um den Fehler zu sehen
     console.log('API-Antwort:', res.body);
-    
+
     // Prüfe den Statuscode und fahre dann fort
     expect(res.statusCode).toBe(200);
 
@@ -62,14 +62,7 @@ describe('API Endpoints', () => {
     }
   });
 
-  // Dein alter GET-Test
-  test('GET / sollte eine erfolgreiche Antwort zurückgeben', async () => {
-    const res = await request(app).get('/');
-    expect(res.statusCode).toBe(200);
-    // expect(res.text).toBe('Server is running');
-  });
-
-    it('sollte eine GET-Anfrage an / zurückgeben', async () => {
+  it('sollte eine GET-Anfrage an / zurückgeben', async () => {
     const res = await request(app).get('/');
     expect(res.statusCode).toBe(200);
   });

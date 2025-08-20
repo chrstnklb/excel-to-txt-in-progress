@@ -18,6 +18,17 @@ const UPLOAD_FOLDER = config.UPLOAD_FOLDER;
 // App init
 const app = express();
 
+// Template Engine einstellen
+app.set('view engine', 'ejs');
+app.set('views', config.VIEWS_FOLDER); // Ordner für .ejs-Dateien
+
+app.use('/static', express.static(config.PUBLIC_FOLDER));
+
+app.get('/', (_req, res) => {
+  res.status(200);
+  res.render('index', { version: config.APP_VERSION });
+});
+
 const storage = multer.diskStorage({
     destination: function (_req, _file, cb) {
 
@@ -33,9 +44,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-// app.use(express.static(path.join(__dirname, '../client')))
-app.use('/static', express.static(config.PUBLIC_FOLDER));
 
 // Routen
 app.post("/upload", upload.single('upload'), (req, res) => {
