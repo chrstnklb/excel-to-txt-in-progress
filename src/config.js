@@ -22,6 +22,6 @@ module.exports = {
     TARGET_FILENAME: process.env.TARGET_FILENAME || 'Imp_lbw.txt',
 
     // Version
-    APP_VERSION: process.env.APP_VERSION || '2025.08.25',
+    APP_VERSION: process.env.APP_VERSION || '2025-08-25-14-54',
     APP_NAME: process.env.APP_NAME || 'relog',
 };
