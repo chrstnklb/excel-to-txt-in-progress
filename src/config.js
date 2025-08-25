@@ -16,7 +16,7 @@ module.exports = {
     DOWNLOAD_FOLDER: process.env.DOWNLOAD_FOLDER || path.join(__dirname, 'exchange', 'download'),
     METRIC_FOLDER: process.env.METRIC_FOLDER || path.join(__dirname, 'exchange', 'metric'),
 
-    TESTDATA_FOLDER: process.env.TESTDATA_FOLDER || path.join(__dirname, 'testdata'),
+    TESTDATA_FOLDER: process.env.TESTDATA_FOLDER || path.join(__dirname, 'server', 'testdata'),
 
     // Target Filename
     TARGET_FILENAME: process.env.TARGET_FILENAME || 'Imp_lbw.txt',
